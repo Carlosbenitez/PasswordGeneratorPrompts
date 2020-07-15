@@ -2,11 +2,11 @@
 var generateBtn = document.querySelector("#generate");
 
 // variables used
-var lengthOfStringFromUserImput = 0;
-var usingNumbers = false;
-var usingUpper = false;
-var usingLower = false;
-var usingSymbols = false;
+var lengthOfStringFromUserInput = 0;
+var usingNumbers = true;
+var usingUpper = true;
+var usingLower = true;
+var usingSymbols = true;
 var numberOfConfirms = 0;
 
 var functionArray = [];
@@ -19,7 +19,7 @@ function howLong(){
         howLong();
     }
     else {
-        lengthOfStringFromUserImput=length;
+        lengthOfStringFromUserInput=length;
     }
 }
 
@@ -31,7 +31,7 @@ function promptMe(){
 
     howLong();
 
-    usingNumber= confirm("Would you like Numbers?")
+    usingNumber= confirm("Would you like numbers?");
 
     usingUpper= confirm("Would you like uppercase letters?");
 
@@ -42,22 +42,22 @@ function promptMe(){
 
 //what occurs on confirms
     if (usingNumber){
-        functionArray.push[getRandomNumber];
+        functionArray.push(getRandomNumber());
         numberOfConfirms++;
     }
 
     if (usingUpper){
-        functionArray.push[getRandomUpper];
+        functionArray.push(getRandomUpper());
         numberOfConfirms++;
     }
 
     if (usingLower){
-        functionArray.push[getRandomLower];
+        functionArray.push(getRandomLower());
         numberOfConfirms++;
     }
 
     if (usingSymbols){
-        functionArray.push[getRandomSymbol];
+        functionArray.push(getRandomSymbol());
         numberOfConfirms++;
     }
 
@@ -72,7 +72,7 @@ function promptMe(){
 function getRandomLower() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
-
+console.log(getRandomLower())
 function getRandomUpper() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
@@ -82,29 +82,30 @@ function getRandomNumber() {
 }
 
 function getRandomSymbol() {
-    const symobls = '"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
+    const symbols = '"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
     return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
-//unsure if this generates a passsword
+//generates a password
 function generatePassword() {
 
     var thePassword = "";
-    for (var i = 0; i < lengthOfStringFromUserImput; i++){
+    for (var i = 0; i < lengthOfStringFromUserInput; i++){
         var randomVariable= Math.floor(Math.random() * functionArray.length);
-        thePassword= functionArray[randomVariable];
+        thePassword += functionArray[randomVariable];
     }   
 
-console.log(functionArray.length);
+
 
     return thePassword;
 }
 
 
-//given code
+//given code from hw assignment
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword();
+    console.log(password)
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
